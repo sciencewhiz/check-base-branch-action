@@ -29,7 +29,7 @@ async function run() {
     const updateBranch = core.getInput("update-branch");
     const defaultBranch = core.getInput("default-branch", { required: updateBranch !== 'true' });
 
-    const oktokit = new github.GitHub(token);
+    const oktokit = github.getOctokit(token);
 
     core.debug(`Checking base branch for PR #${prNumber}`);
 
@@ -61,10 +61,13 @@ async function run() {
       core.debug(`Base branch is ${pr.data.base.ref}. Skipping.`);
     }
   } catch (err) {
-    core.error(err);
-    core.setFailed(
-      `Error occurred while validating base branch: ${err.message}`
-    );
+    if (typeof err === "string") {
+        core.error(err);
+        core.setFailed(`Error occurred while validating base branch: ${err}`);
+    } else if (err instanceof Error) {
+        core.error(err);
+        core.setFailed(`Error occurred while validating base branch: ${err.message}`);
+    }
   }
 }
 

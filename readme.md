@@ -16,7 +16,7 @@ on: [pull_request]
 jobs:
   check-base-branch:
     steps:
-      - uses: a-b-r-o-w-n/check-base-branch-action@v1.1
+      - uses: wpilibsuite/check-base-branch-action@v1.1
         with:
           repo-token: "${{ secrets.GITHUB_TOKEN }}"
           protected-branches: "main, production"
@@ -34,7 +34,7 @@ on: [pull_request]
 jobs:
   check-base-branch:
     steps:
-      - uses: a-b-r-o-w-n/check-base-branch-action@v1.1
+      - uses: wpilibsuite/check-base-branch-action@v1.1
         with:
           repo-token: "${{ secrets.GITHUB_TOKEN }}"
           protected-branches: "main, production"

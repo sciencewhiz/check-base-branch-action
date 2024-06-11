@@ -14,7 +14,7 @@ inputs:
     description: "Branch to set as base if PR is opened against a protected branch."
     default: "main"
 runs:
-  using: "node12"
+  using: "node20"
   main: "lib/check-base-branch.js"
 branding:
   icon: "lock"
